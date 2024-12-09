@@ -1,7 +1,0 @@
-MongoDB:
-
-username: gfsc
-password: QWTSbJTfhU8UMmwV
-
-
-mongodb+srv://gfsc:QWTSbJTfhU8UMmwV@estoque.jkshg.mongodb.net/?retryWrites=true&w=majority&appName=Estoque
