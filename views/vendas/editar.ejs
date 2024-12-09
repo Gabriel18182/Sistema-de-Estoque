@@ -1,0 +1,161 @@
+<!-- views/vendas/editar.ejs -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Venda</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- Estilo embutido -->
+  <style>
+    body {
+      background-color: #b84f06;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      margin-top: 20px;
+      padding: 10px 15px;
+      background-color: #512a1b; /* Cor de fundo dos detalhes */
+      border-radius: 8px;
+      width: fit-content; /* Ajusta o tamanho conforme o conteúdo */
+      margin-left: auto; /* Centraliza o contêiner na tela */
+      margin-right: auto; /* Centraliza o contêiner na tela */
+    }
+
+    h1 {
+      color: #ffae67;
+      font-size: 2rem;
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+
+    .form-control {
+      background-color: #ca671e;
+      color: white;
+      border: none;
+      width: 100%;
+    }
+
+    .form-control:focus {
+      background-color: #dc7f37;
+      border-color: #ffae67;
+    }
+
+    .btn-success {
+      background-color: #ca671e;
+      color: white;
+      border: none;
+    }
+
+    .btn-success:hover {
+      background-color: #dc7f37;
+    }
+
+    .btn-secondary {
+      background-color: #ffae67;
+      color: white;
+      border: none;
+    }
+
+    .btn-secondary:hover {
+      background-color: #f7c38c;
+    }
+
+    label {
+      color: white;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .navbar {
+      margin-bottom: 10px;
+    }
+
+    .content-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <%- include('../partials/menu') %>
+
+  <div class="h1">
+    <h1>Editar Venda</h1>
+  </div>
+
+    <div class="container">
+      <form action="/vendas/editar/<%= venda._id %>" method="POST">
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="produto">Produto</label>
+            <input type="text" class="form-control" id="produto" name="produto" value="<%= venda.produto %>" required>
+          </div>
+
+          <div class="form-group col-md-12">
+            <label for="quantidade">Quantidade</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              id="quantidade" 
+              name="quantidade" 
+              value="<%= venda.quantidade %>" 
+              required 
+              pattern="^\d+$"  
+              oninvalid="this.setCustomValidity('Por favor, insira um número válido para a quantidade.')"
+              oninput="this.setCustomValidity('')">  <!-- Limpa a mensagem ao digitar novamente -->
+          </div>
+          
+          <div class="form-group col-md-12">
+            <label for="valor">Valor</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              id="valor" 
+              name="valor" 
+              value="<%= venda.valor %>" 
+              required
+              pattern="^\d+(\.\d{1,2})?$"  
+              oninvalid="this.setCustomValidity('Por favor, insira um valor numérico válido.')"
+              oninput="this.setCustomValidity('')">  <!-- Limpa a mensagem ao digitar novamente -->
+          </div>
+          
+
+          <div class="form-group col-md-12">
+            <label for="fornecedor">Fornecedor</label>
+            <select class="form-control" id="fornecedor" name="fornecedor" required>
+              <% fornecedores.forEach(fornecedor => { %>
+                <option value="<%= fornecedor._id %>" <%= venda.fornecedor && venda.fornecedor._id.toString() === fornecedor._id.toString() ? 'selected' : '' %>><%= fornecedor.nome %></option>
+              <% }) %>
+            </select>
+          </div>
+
+          <div class="form-group col-md-12">
+            <label for="dataVenda">Data da Venda</label>
+            <input type="date" class="form-control" id="dataVenda" name="dataVenda" value="<%= venda.dataVenda.toISOString().split('T')[0] %>" required>
+          </div>
+        </div>
+        <br>
+        <div class="form-group text-center">
+          <a href="/vendas" class="btn btn-secondary">Voltar</a>
+          <button type="submit" class="btn btn-success">Confirmar Alteração</button>
+          
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Fornecedor</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- Estilo embutido -->
+  <style>
+    /* Estilos gerais */
+    body {
+      background-color: #b84f06; /* Cor de fundo principal */
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Ajusta o menu para o topo da página */
+    .container {
+      margin-top: 20px;
+      padding: 10px 15px;
+      background-color: #512a1b; /* Cor de fundo dos detalhes */
+      border-radius: 8px;
+      width: fit-content; /* Ajusta o tamanho conforme o conteúdo */
+      margin-left: auto; /* Centraliza o contêiner na tela */
+      margin-right: auto; /* Centraliza o contêiner na tela */
+    }
+
+    h1 {
+      color: #ffae67; /* Cor para o título */
+      font-size: 2rem;
+      text-align: center; /* Centraliza o título */
+      margin-top: 5px; /* Reduz ainda mais o espaço entre o título e o menu */
+      margin-bottom: 5px; /* Diminui a distância entre o título e o formulário */
+    }
+
+    .form-control {
+      background-color: #ca671e; /* Cor de fundo dos campos */
+      color: white;
+      border: none;
+      width: 100%; /* Faz o campo ocupar toda a largura disponível */
+    }
+
+    .form-control:focus {
+      background-color: #dc7f37; /* Cor ao focar no campo */
+      border-color: #ffae67;
+    }
+
+    .btn-success {
+      background-color: #ca671e; /* Cor do botão Confirmar */
+      color: white;
+      border: none;
+    }
+
+    .btn-success:hover {
+      background-color: #dc7f37; /* Cor ao passar o mouse */
+    }
+
+    .btn-secondary {
+      background-color: #ffae67; /* Cor do botão Voltar */
+      color: white;
+      border: none;
+    }
+
+    .btn-secondary:hover {
+      background-color: #f7c38c; /* Cor ao passar o mouse */
+    }
+
+    label {
+      color: white;
+    }
+
+    /* Ajusta a margem do formulário */
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    /* Ajusta o menu na parte superior da página */
+    .navbar {
+      margin-bottom: 10px; /* Diminui o espaço entre o menu e o título */
+    }
+
+    /* Centraliza o conteúdo na tela */
+    .content-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <!-- Menu -->
+  <%- include('../partials/menu') %>
+
+  <div class="h1">
+    <!-- Título centralizado -->
+    <h1>Editar Fornecedor</h1>
+
+  </div>
+
+    <div class="container">
+      <!-- Formulário -->
+      <form action="/fornecedores/editar/<%= fornecedor._id %>" method="POST">
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="nome">Nome</label>
+            <input type="text" class="form-control" id="nome" name="nome" value="<%= fornecedor.nome %>" required>
+          </div>
+
+          <div class="form-group col-md-12">
+            <label for="cnpj">CNPJ</label>
+            <input type="text" class="form-control" id="cnpj" name="cnpj" value="<%= fornecedor.cnpj %>" required>
+          </div>
+
+          <div class="form-group col-md-12">
+            <label for="endereco">Endereço</label>
+            <input type="text" class="form-control" id="endereco" name="endereco" value="<%= fornecedor.endereco %>" required>
+          </div>
+
+          <div class="form-group col-md-12">
+            <label for="telefone">Telefone</label>
+            <input type="text" class="form-control" id="telefone" name="telefone" value="<%= fornecedor.telefone %>" required>
+          </div>
+        </div>
+        <br>
+
+        <div class="form-group text-center">
+          <a href="/fornecedores" class="btn btn-secondary">Voltar</a>
+          <button type="submit" class="btn btn-success">Confirmar Alteração</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
